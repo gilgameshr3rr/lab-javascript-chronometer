@@ -14,15 +14,22 @@ const milUniElement = document.getElementById('milUni');
 const splitsElement = document.getElementById('splits');
 
 function printTime() {
-  // ... your code goes here
+  printMinutes();
+  printSeconds();
 }
 
 function printMinutes() {
-  // ... your code goes here
+  const minuto = chronometer.getMinutes();
+  // 7
+  minDecElement.innerText = chronometer.computeTwoDigitNumber(minuto)[0]; // "07" > "0"
+  minUniElement.innerText = chronometer.computeTwoDigitNumber(minuto)[1]; // "7"
 }
 
 function printSeconds() {
-  // ... your code goes here
+  const segundos = chronometer.getSeconds();
+  // 7
+  secDecElement.innerText = chronometer.computeTwoDigitNumber(segundos)[0]; // "07" > "0"
+  secUniElement.innerText = chronometer.computeTwoDigitNumber(segundos)[1];
 }
 
 // ==> BONUS
@@ -30,16 +37,27 @@ function printMilliseconds() {
   // ... your code goes here
 }
 
-function printSplit() {
-  // ... your code goes here
+function printSplit(split) {
+  // criei uma li pelo javascript
+  const li = document.createElement('li');
+  // mudei o conteudo de texto da li que eu acabei de criar
+  li.innerText = split;
+  // fiz o meu elemento de ol (splitsElements) adotar a li que eu criei antes
+  splitsElement.appendChild(li);
 }
 
 function clearSplits() {
-  // ... your code goes here
+  splitsElement.innerHTML = '';
 }
 
 function setStopBtn() {
-  // ... your code goes here
+  chronometer.stop();
+  btnLeftElement.classList.toggle('stop');
+  btnLeftElement.classList.toggle('start');
+  btnLeftElement.innerText = 'START';
+  btnRightElement.classList.toggle('reset');
+  btnRightElement.classList.toggle('split');
+  btnRightElement.innerText = 'RESET';
 }
 
 function setSplitBtn() {
